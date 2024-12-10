@@ -14,6 +14,14 @@ export class GameBoard {
     this.#columnLength = column;
   }
 
+  isEmptyCell(row, column) {
+    if (this.#board[row][column] === 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   getBoard() {
     return this.#board;
   }
