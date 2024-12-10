@@ -1,10 +1,8 @@
-import { GameBoard } from "./gameBoard";
-
 export class TicTacToe {
   #board;
   #playerOne;
   #playerTwo;
-  #currentTurn = 0;
+  #currentTurn = 1;
 
   constructor(board, playerOne, playerTwo) {
     this.#board = board;
@@ -20,23 +18,43 @@ export class TicTacToe {
       return;
     }
 
-    if (this.#currentTurn === 0) {
+    console.log(`Current player: ${this.#currentTurn}`);
+
+    if (this.#currentTurn === 1) {
       // Player one takes a turn
       this.#board.updateCell(row, column, 1);
-      this.#currentTurn = 1;
-    } else if (this.#currentTurn === 1) {
+      if (this.playerOneHasWonRound()) {
+        console.log("PLAYER ONE WINS");
+      }
+      this.#currentTurn = 2;
+    } else if (this.#currentTurn === 2) {
       // Player two takes a turn
       this.#board.updateCell(row, column, 2);
-      this.#currentTurn = 0;
+      if (this.playerTwoHasWonRound()) {
+        console.log("PLAYER TWO WINS");
+      }
+      this.#currentTurn = 1;
     }
   }
 
-  hasWonRound(row, column) {
-    board = this.#board.getBoard();
+  playerOneHasWonRound() {
+    return (
+      this.checkRows() === 1 ||
+      this.checkColumns() === 1 ||
+      this.checkDiagonals() === 1
+    );
+  }
+
+  playerTwoHasWonRound() {
+    return (
+      this.checkRows() === 2 ||
+      this.checkColumns() === 2 ||
+      this.checkDiagonals() === 2
+    );
   }
 
   checkRows() {
-    board = this.#board.getBoard();
+    const board = this.#board.getBoard();
 
     for (let i = 0; i < 3; i++) {
       let xCount = 0;
@@ -60,7 +78,7 @@ export class TicTacToe {
   }
 
   checkColumns() {
-    board = this.#board.getBoard();
+    const board = this.#board.getBoard();
 
     for (let i = 0; i < 3; i++) {
       let xCount = 0;
@@ -84,7 +102,7 @@ export class TicTacToe {
   }
 
   checkDiagonals() {
-    board = this.#board.getBoard();
+    const board = this.#board.getBoard();
 
     // top left to bottom right
     if (board[0][0] == 1 && board[1][1] == 1 && board[2][2] == 1) {
