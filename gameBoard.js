@@ -1,4 +1,4 @@
-export class gameBoard {
+export class GameBoard {
   #board;
   #rowLength;
   #columnLength;
