@@ -4,6 +4,10 @@ export class GameBoard {
   #columnLength;
 
   constructor(row, column) {
+    this.initaliseBoard(row, column);
+  }
+
+  initaliseBoard(row, column) {
     this.#board = new Array(row);
 
     for (let i = 0; i < this.#board.length; i++) {
@@ -12,6 +16,18 @@ export class GameBoard {
 
     this.#rowLength = row;
     this.#columnLength = column;
+  }
+
+  isFull() {
+    for (let i = 0; i < this.#rowLength; i++) {
+      for (let k = 0; k < this.#columnLength; k++) {
+        if (this.#board[i][k] === 0) {
+          return false;
+        }
+      }
+    }
+
+    return true;
   }
 
   isEmptyCell(row, column) {
@@ -24,6 +40,14 @@ export class GameBoard {
 
   getBoard() {
     return this.#board;
+  }
+
+  getRowLength() {
+    return this.#rowLength;
+  }
+
+  getColumnLength() {
+    return this.#columnLength;
   }
 
   updateCell(row, column, value) {
