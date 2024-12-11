@@ -13,44 +13,52 @@ export class TicTacToe {
   takeTurn(row, column) {
     // Player one is X , Player two is O
 
+    // Cancels, if targeted cell is already occupied
     if (!this.#board.isEmptyCell(row, column)) {
       console.log("This cell is already occupied");
-      return;
+      return false;
     }
 
     console.log(`Current player: ${this.#currentTurn}`);
 
-    if (this.#currentTurn === 1) {
-      // Player one takes a turn
-      this.#board.updateCell(row, column, 1);
-      if (this.playerOneHasWonRound()) {
-        console.log("PLAYER ONE WINS");
+    // Updates the gameboard
+    this.#board.updateCell(row, column, this.#currentTurn);
+
+    // Checks if the round is won
+    if (this.hasWon() != 0) {
+      if (this.hasWon() === 1) {
+        console.log(`${this.#playerOne.getName()} has won`);
+        this.#playerOne.addScore();
+      } else if (this.hasWon() === 2) {
+        console.log(`${this.#playerTwo.getName()} has won`);
+        this.#playerTwo.addScore();
       }
-      this.#currentTurn = 2;
-    } else if (this.#currentTurn === 2) {
-      // Player two takes a turn
-      this.#board.updateCell(row, column, 2);
-      if (this.playerTwoHasWonRound()) {
-        console.log("PLAYER TWO WINS");
-      }
-      this.#currentTurn = 1;
+    } else if (this.#board.isFull()) {
+      // Checks if the round is drawn
+      console.log("The game ends in a draw");
     }
+
+    // Changes the player turn
+    this.#currentTurn = this.#currentTurn === 1 ? 2 : 1;
+    return true;
   }
 
-  playerOneHasWonRound() {
-    return (
+  hasWon() {
+    if (
       this.checkRows() === 1 ||
       this.checkColumns() === 1 ||
       this.checkDiagonals() === 1
-    );
-  }
-
-  playerTwoHasWonRound() {
-    return (
+    ) {
+      return 1;
+    } else if (
       this.checkRows() === 2 ||
       this.checkColumns() === 2 ||
       this.checkDiagonals() === 2
-    );
+    ) {
+      return 2;
+    }
+
+    return 0;
   }
 
   checkRows() {
