@@ -38,6 +38,10 @@ export class GameBoard {
     }
   }
 
+  getCellValue(row, col) {
+    return this.#board[row][cell];
+  }
+
   getBoard() {
     return this.#board;
   }
