@@ -128,4 +128,14 @@ export class TicTacToe {
 
     return 0;
   }
+
+  getCellValue(row, col) {
+    const value = this.#board.getBoard()[row][col];
+
+    if (value === 1) {
+      return "X";
+    } else if (value === 2) {
+      return "O";
+    }
+  }
 }
