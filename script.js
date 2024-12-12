@@ -4,11 +4,12 @@ import { TicTacToe } from "./TicTacToe.js";
 import { UpdateBoardUI } from "./UpdateBoardUI.js";
 
 const gameBoard = new GameBoard(3, 3);
-const playerOne = new Player("One");
-const playerTwo = new Player("Two");
-const ticTacToe = new TicTacToe(gameBoard, playerOne, playerTwo);
+// const playerOne = new Player("One");
+// const playerTwo = new Player("Two");
+const ticTacToe = new TicTacToe(gameBoard);
 
 const cells = document.querySelectorAll(".cell");
+const restartBtn = document.querySelector("#restartBtn");
 
 cells.forEach((cell) => {
   cell.addEventListener("click", () => {
@@ -16,7 +17,22 @@ cells.forEach((cell) => {
     const col = cell.getAttribute("data-column");
     ticTacToe.takeTurn(row, col);
     UpdateBoardUI.updateBoard(ticTacToe);
+
+    const result = ticTacToe.hasFinished();
+
+    if (result != -1) {
+      if (result === 1 || result === 2) {
+        console.log(`Player ${result} has won`);
+      } else {
+        console.log("The game has been drawn");
+      }
+    }
   });
+});
+
+restartBtn.addEventListener("click", () => {
+  ticTacToe.getBoard().resetBoard();
+  UpdateBoardUI.updateBoard(ticTacToe);
 });
 
 // Draw

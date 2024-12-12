@@ -1,13 +1,19 @@
+import { Player } from "./Player.js";
+
 export class TicTacToe {
   #board;
-  #playerOne;
-  #playerTwo;
+  #playerOne = new Player("Player One");
+  #playerTwo = new Player("Player Two");
   #currentTurn = 1;
 
   constructor(board, playerOne, playerTwo) {
     this.#board = board;
     this.#playerOne = playerOne;
     this.#playerTwo = playerTwo;
+  }
+
+  getBoard() {
+    return this.#board;
   }
 
   takeTurn(row, column) {
@@ -24,26 +30,26 @@ export class TicTacToe {
     // Updates the gameboard
     this.#board.updateCell(row, column, this.#currentTurn);
 
-    // Checks if the round is won
-    if (this.hasWon() != 0) {
-      if (this.hasWon() === 1) {
-        console.log(`${this.#playerOne.getName()} has won`);
-        this.#playerOne.addScore();
-      } else if (this.hasWon() === 2) {
-        console.log(`${this.#playerTwo.getName()} has won`);
-        this.#playerTwo.addScore();
-      }
-    } else if (this.#board.isFull()) {
-      // Checks if the round is drawn
-      console.log("The game ends in a draw");
-    }
+    // // Checks if the round is won
+    // if (this.hasWon() != 0) {
+    //   if (this.hasWon() === 1) {
+    //     console.log(`${this.#playerOne.getName()} has won`);
+    //     this.#playerOne.addScore();
+    //   } else if (this.hasWon() === 2) {
+    //     console.log(`${this.#playerTwo.getName()} has won`);
+    //     this.#playerTwo.addScore();
+    //   }
+    // } else if (this.#board.isFull()) {
+    //   // Checks if the round is drawn
+    //   console.log("The game ends in a draw");
+    // }
 
     // Changes the player turn
     this.#currentTurn = this.#currentTurn === 1 ? 2 : 1;
     return true;
   }
 
-  hasWon() {
+  hasFinished() {
     if (
       this.checkRows() === 1 ||
       this.checkColumns() === 1 ||
@@ -56,9 +62,11 @@ export class TicTacToe {
       this.checkDiagonals() === 2
     ) {
       return 2;
+    } else if (this.#board.isFull()) {
+      return 3;
     }
 
-    return 0;
+    return -1;
   }
 
   checkRows() {

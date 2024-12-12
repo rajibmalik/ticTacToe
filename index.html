@@ -8,7 +8,16 @@
     <title>Document</title>
   </head>
   <body>
+    <div id="gameHeader">Header</div>
+    <div id="gameContainerWrapper">
     <div id="gameContainer">
+   
+      <div id="gameBody">
+      <div id="playerOneContainer">
+        <h1 class="playerHeader" id="playerOneHeader">Player One (X)</h1>
+        <h2 class="score" id="playerOneScore" data-info="Score:">Score: 0 </h2>
+      </div>
+    <div id="gridContainer">
       <div class="row" id="zero">
         <button class="cell" data-row="0" data-column="0"></button>
         <button class="cell" data-row="0" data-column="1"></butston>
@@ -24,6 +33,20 @@
         <button class="cell" data-row="2" data-column="1"></button>
         <button class="cell" data-row="2" data-column="2"></button>
       </div>
+      <div id="restartContainer">
+        <button id="restartBtn">Restart Game</button>
+        </div>
     </div>
+    <div id="playerTwoContainer">
+      <h1 class="playerHeader" id="playerTwoHeader">Player Two (O)</h1>
+      <h2 class="score" id="playerTwoScore" data-info="Score:">Score: 0</h2>
+    </div>
+  </div>
+
+  </div>
+
+  
+</div>
+<div id="gameFooter">Footer</div>
   </body>
 </html>

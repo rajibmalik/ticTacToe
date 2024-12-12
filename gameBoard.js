@@ -10,12 +10,18 @@ export class GameBoard {
   initaliseBoard(row, column) {
     this.#board = new Array(row);
 
-    for (let i = 0; i < this.#board.length; i++) {
+    for (let i = 0; i < row; i++) {
       this.#board[i] = new Array(column).fill(0);
     }
 
     this.#rowLength = row;
     this.#columnLength = column;
+  }
+
+  resetBoard() {
+    for (let i = 0; i < this.#rowLength; i++) {
+      this.#board[i] = new Array(this.#columnLength).fill(0);
+    }
   }
 
   isFull() {
