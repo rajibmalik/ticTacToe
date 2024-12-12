@@ -72,6 +72,11 @@ body {
   height: 175px;
   border: none;
   font-size: 8rem;
+  cursor: pointer;
+}
+
+.cell.clicked {
+  cursor: default;
 }
 
 #playerOneContainer,
@@ -104,6 +109,14 @@ body {
   text-align: center;
   font-weight: bold;
   font-size: 1.1rem;
+}
+
+#restartBtn:disabled {
+  opacity: 1; /* Keep the opacity the same as the enabled state */
+  cursor: pointer; /* Keep the same cursor instead of changing to 'not-allowed' */
+  background-color: #007bff; /* Keep the background color the same */
+  color: white; /* Keep the text color the same */
+  border: 1px solid #0056b3; /* Keep the border the same */
 }
 
 #restartBtn:hover {

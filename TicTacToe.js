@@ -6,14 +6,20 @@ export class TicTacToe {
   #playerTwo = new Player("Player Two");
   #currentTurn = 1;
 
-  constructor(board, playerOne, playerTwo) {
+  constructor(board) {
     this.#board = board;
-    this.#playerOne = playerOne;
-    this.#playerTwo = playerTwo;
   }
 
   getBoard() {
     return this.#board;
+  }
+
+  getPlayerOne() {
+    return this.#playerOne;
+  }
+
+  getPlayerTwo() {
+    return this.#playerTwo;
   }
 
   takeTurn(row, column) {

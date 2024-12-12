@@ -18,20 +18,34 @@ cells.forEach((cell) => {
     ticTacToe.takeTurn(row, col);
     UpdateBoardUI.updateBoard(ticTacToe);
 
+    if (!cell.classList.contains("clicked")) {
+      cell.classList.add("clicked");
+    }
+
     const result = ticTacToe.hasFinished();
 
     if (result != -1) {
-      if (result === 1 || result === 2) {
+      if (result === 1) {
         console.log(`Player ${result} has won`);
+        ticTacToe.getPlayerOne().addScore();
+      } else if (result === 2) {
+        console.log(`Player ${result} has won yay`);
+        ticTacToe.getPlayerTwo().addScore();
       } else {
         console.log("The game has been drawn");
       }
+      UpdateBoardUI.disableBoard();
+      UpdateBoardUI.updatePlayerScores(
+        ticTacToe.getPlayerOne(),
+        ticTacToe.getPlayerTwo()
+      );
     }
   });
 });
 
 restartBtn.addEventListener("click", () => {
   ticTacToe.getBoard().resetBoard();
+  UpdateBoardUI.enableBoard();
   UpdateBoardUI.updateBoard(ticTacToe);
 });
 
