@@ -8,6 +8,10 @@ export const UpdateBoardUI = (function () {
     });
   }
 
+  function highlightPlayerOne() {
+    this.highlightCurrentPlayer(1);
+  }
+
   function updatePlayerScores(playerOne, playerTwo) {
     const playerOneScore = document.querySelector("#playerOneScore");
     const playerTwoScore = document.querySelector("#playerTwoScore");
@@ -23,6 +27,7 @@ export const UpdateBoardUI = (function () {
 
   function enableBoard() {
     const cells = document.querySelectorAll(".cell");
+
     cells.forEach((cell) => {
       cell.classList.remove("clicked");
       cell.style.pointerEvents = "auto";
@@ -37,10 +42,24 @@ export const UpdateBoardUI = (function () {
     });
   }
 
+  function highlightCurrentPlayer(currentPlayer) {
+    const playerOneScore = document.querySelector("#playerOneHeader");
+    const playerTwoScore = document.querySelector("#playerTwoHeader");
+    if (currentPlayer === 1) {
+      playerOneScore.classList.add("highlight");
+      playerTwoScore.classList.remove("highlight");
+    } else {
+      playerTwoScore.classList.add("highlight");
+      playerOneScore.classList.remove("highlight");
+    }
+  }
+
   return {
     updateBoard,
     updatePlayerScores,
     disableBoard,
     enableBoard,
+    highlightCurrentPlayer,
+    highlightPlayerOne,
   };
 })();

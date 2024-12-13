@@ -22,6 +22,10 @@ export class TicTacToe {
     return this.#playerTwo;
   }
 
+  getCurrentPlayer() {
+    return this.#currentTurn;
+  }
+
   takeTurn(row, column) {
     // Player one is X , Player two is O
 
