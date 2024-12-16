@@ -26,6 +26,14 @@ export class TicTacToe {
     return this.#currentTurn;
   }
 
+  setCurrentPlayer(number) {
+    if (number < 1 || number > 2) {
+      console.log("Number must be equal to 1 or 2");
+      return;
+    }
+    this.#currentTurn = number;
+  }
+
   takeTurn(row, column) {
     // Player one is X , Player two is O
 

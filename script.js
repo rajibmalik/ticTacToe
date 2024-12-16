@@ -47,6 +47,7 @@ cells.forEach((cell) => {
 
 restartBtn.addEventListener("click", () => {
   ticTacToe.getBoard().resetBoard();
+  ticTacToe.setCurrentPlayer(1);
   UpdateBoardUI.enableBoard();
   UpdateBoardUI.updateBoard(ticTacToe);
 });
