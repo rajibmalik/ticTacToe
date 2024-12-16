@@ -1,4 +1,4 @@
-import { GameBoard } from "./GameBoard.js";
+import { GameBoard } from "./gameBoard.js";
 import { TicTacToe } from "./TicTacToe.js";
 import { UpdateBoardUI } from "./UpdateBoardUI.js";
 
