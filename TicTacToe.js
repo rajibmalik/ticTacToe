@@ -40,20 +40,6 @@ export class TicTacToe {
     // Updates the gameboard
     this.#board.updateCell(row, column, this.#currentTurn);
 
-    // // Checks if the round is won
-    // if (this.hasWon() != 0) {
-    //   if (this.hasWon() === 1) {
-    //     console.log(`${this.#playerOne.getName()} has won`);
-    //     this.#playerOne.addScore();
-    //   } else if (this.hasWon() === 2) {
-    //     console.log(`${this.#playerTwo.getName()} has won`);
-    //     this.#playerTwo.addScore();
-    //   }
-    // } else if (this.#board.isFull()) {
-    //   // Checks if the round is drawn
-    //   console.log("The game ends in a draw");
-    // }
-
     // Changes the player turn
     this.#currentTurn = this.#currentTurn === 1 ? 2 : 1;
     return true;
